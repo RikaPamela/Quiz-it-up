@@ -1,0 +1,22 @@
+<div class="header" >
+<h2>Quiz</h2>
+</div>
+<div *ngIf="currentQuestion">
+  <h3>{{ currentQuestion.question }}</h3>
+  <ul>
+    <li *ngFor="let option of currentQuestion.options">
+      <label>
+        <input type="radio" [value]="option" [(ngModel)]="selectedOption">
+        {{ option }}
+      </label>
+    </li>
+  </ul>
+  <button (click)="nextQuestion()">Next</button>
+</div>
+<div *ngIf="!currentQuestion && !quizCompleted">
+  <p>Loading quiz questions...</p>
+</div>
+<div *ngIf="quizCompleted">
+  <h3>Congratulations, you have completed the quiz!</h3>
+  <p>Your score is {{ score }} out of {{ questions.length }}.</p>
+</div>
